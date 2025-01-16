@@ -2,13 +2,12 @@ import pygame
 import numpy as np
 from utils import *
 
-
 class Visualizer:
     def __init__(self):
         self.dash_offset = 0
 
     def update(self):
-        self.dash_offset += 0.05  # Speed of the dash movement
+        self.dash_offset += 0.05  
         if self.dash_offset >= 1:
             self.dash_offset = 0
 
@@ -34,7 +33,6 @@ class Visualizer:
         weights = level.weights
         biases = level.biases
 
-        # Draw connections with animated dashed lines
         for i in range(len(inputs)):
             for j in range(len(outputs)):
                 start_pos = self.get_node_x(inputs, i, left, right), bottom
@@ -46,7 +44,6 @@ class Visualizer:
         node_radius = 32
         shadow_offset = 4
 
-        # Draw input nodes with shadow
         for i in range(len(inputs)):
             x = self.get_node_x(inputs, i, left, right)
             pygame.draw.circle(
@@ -55,7 +52,6 @@ class Visualizer:
             pygame.draw.circle(screen, get_rgba(inputs[i])[
                                :3], (x, bottom), int(node_radius * 0.6))
 
-        # Draw output nodes with shadow
         for i in range(len(outputs)):
             x = self.get_node_x(outputs, i, left, right)
             pygame.draw.circle(
@@ -75,3 +71,5 @@ class Visualizer:
     @staticmethod
     def get_node_x(nodes, index, left, right):
         return lerp(left, right, 0.5 if len(nodes) == 1 else index / (len(nodes) - 1))
+    
+    
