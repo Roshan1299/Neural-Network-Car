@@ -3,7 +3,7 @@ import math
 from settings import *
 from controls import Controls
 from sensor import Sensor, Point
-from utils import *
+from .utils import *
 from network import NeuralNetwork
 
 
