@@ -64,7 +64,7 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((1400, 700))
     pygame.display.set_caption('NeuroNet')
-    icon = pygame.image.load('img/car_1.png')
+    icon = pygame.image.load('assets/car_1.png')
     pygame.display.set_icon(icon)
 
     clock = pygame.time.Clock()
@@ -89,7 +89,6 @@ def main():
                 exit()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                 reset_game()
-                apply_brain_to_cars(cars)
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_s:
                 save_brain(best_car)
             for car in cars:
