@@ -3,7 +3,7 @@ import math
 from settings import *
 from controls import Controls
 from sensor import Sensor, Point
-from .utils import *
+from utils import *
 from network import NeuralNetwork
 
 
@@ -16,11 +16,11 @@ class Car(pygame.sprite.Sprite):
         self.height = height
 
         self.image_normal = pygame.image.load(
-            "img/car_1.png").convert_alpha()
+            "assets/car_1.png").convert_alpha()
         self.image_normal = pygame.transform.smoothscale(
             self.image_normal, (self.width, self.height))
         self.image_damaged = pygame.image.load(
-            "img/car_c.png").convert_alpha()
+            "assets/car_c.png").convert_alpha()
         self.image_damaged = pygame.transform.smoothscale(
             self.image_damaged, (self.width, self.height))
 
