@@ -29,12 +29,12 @@ The project is organized into multiple files, each handling a specific aspect of
 - `sensor.py`: Simulates car sensors for detecting road borders.
 - `settings.py`: Contains simulation constants and configurations.
 - `visualizer.py`: Provides real-time neural network visualization.
-- `best_brain.json`: Stores the best-performing neural network.
+- `save_state.json`: Stores the best-performing neural network and generation number.
 
 ## Controls
-- `R`: Reset the simulation with a new set of cars.
-- `S`: Save the brain of the best-performing car to a file (best_brain.json).
-- `ESC`: Exit the simulation.
+- `R`: Restart simulation with a new generation of cars (mutated from the best saved brain).
+- `S`: Save the current best-performing car's neural network (only if it's better than the last saved one).
+- `ESC`: Exit the simulation (also auto-saves if a best car exists).
 
 ## How it works
 
