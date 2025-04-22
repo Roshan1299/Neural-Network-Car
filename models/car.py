@@ -1,11 +1,10 @@
 import pygame
 import math
 from settings import *
-from controls import Controls
-from sensor import Sensor, Point
-from utils import *
-from network import NeuralNetwork
-
+from controllers.controls import Controls
+from models.sensor import Sensor, Point
+from utils.utils import *
+from models.network import NeuralNetwork
 
 class Car(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, control_type, max_speed=4):
