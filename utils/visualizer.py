@@ -1,6 +1,6 @@
 import pygame
 import numpy as np
-from utils import *
+from utils.utils import *
 
 class Visualizer:
     def __init__(self):
