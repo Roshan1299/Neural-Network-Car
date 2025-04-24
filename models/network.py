@@ -1,6 +1,6 @@
 import random
 import copy
-from utils import *
+from utils.utils import *
 
 
 class NeuralNetwork:
