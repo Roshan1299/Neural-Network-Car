@@ -59,7 +59,7 @@ def reset_game():
 def main():
     global cars, best_car, road, generation, num_cars
     pygame.init()
-    screen = pygame.display.set_mode((1500, 900))
+    screen = pygame.display.set_mode((1200, 900))
     pygame.display.set_caption('NeuroNet')
     icon = pygame.image.load('assets/car_1.png')
     pygame.display.set_icon(icon)
