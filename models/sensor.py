@@ -1,6 +1,6 @@
 import pygame
 import math
-from utils import *
+from utils.utils import *
 from settings import *
 
 
