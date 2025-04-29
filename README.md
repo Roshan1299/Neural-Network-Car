@@ -1,14 +1,16 @@
 # NeuroNet_Car
 
-This project is a Python-based simulation of AI-controlled cars navigating a wavy track. The cars are controlled by neural networks, and the project demonstrates the use of genetic algorithms to evolve the AI's driving behavior. Built using **Pygame**, this project is a fun and educational way to explore AI, neural networks, and simulation development.
+A Python-based simulation of AI-controlled cars navigating a wavy track using **evolutionary neural networks** and **genetic algorithms**. Built with **Pygame**, this project demonstrates how autonomous agents can learn to drive without being explicitly programmed.
 
+---
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit-green?style=for-the-badge)](http://neural-net-car.s3-website-us-east-1.amazonaws.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit-red?style=for-the-badge)](http://neural-net-car.s3-website-us-east-1.amazonaws.com)
 
 > ✅ **Hosted on AWS S3**  
 > 🎥 Includes demo videos + neural network visualization  
 > 📦 Entire website served statically via S3
 
+---
 ## Table of Contents
 
 1. [Features](#features)
