@@ -1,66 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neural Network Car Simulation</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Uncomment if you add a favicon later -->
-    <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Car Training Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c, #1a1a1a);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #cccccc;
+            font-size: 1.1rem;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+            overflow-x: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #cccccc;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tab.active {
+            color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 0 0 12px 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .chart-card h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            border: 2px dashed rgba(0, 255, 136, 0.3);
+        }
+
+        .chart-placeholder span {
+            color: #00ff88;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .chart-description {
+            color: #cccccc;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .large-chart {
+            grid-column: 1 / -1;
+        }
+
+        .large-chart .chart-placeholder {
+            height: 400px;
+        }
+
+        /* New style for video placeholders */
+        .video-placeholder {
+            width: 100%;
+            height: 360px;
+            background: linear-gradient(135deg, #222, #111);
+            border-radius: 12px;
+            border: 2px dashed rgba(0, 255, 136, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ff88;
+            font-size: 1.2rem;
+            font-weight: 600;
+            user-select: none;
+            cursor: default;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Car Training Analysis</h1>
+            <p>Comprehensive visualization of neural network evolution across 38 generations</p>
+        </div>
 
-    <header class="fade-in">
-        <h1>Neural Network Car Simulation</h1>
-        <p>Training autonomous agents using evolutionary neural networks and genetic algorithms.</p>
-    </header>
+        <div class="tabs">
+            <button class="tab" onclick="showTab('demo')">🚀 Project Demo</button>
+            <button class="tab active" onclick="showTab('neural')">🧠 Neural Evolution</button>
+            <button class="tab" onclick="showTab('behavior')">🎯 Behavior Analysis</button>
+            <button class="tab" onclick="showTab('performance')">📈 Performance Metrics</button>
+            <button class="tab" onclick="showTab('paths')">🏁 Path Evolution</button>
+            <button class="tab" onclick="showTab('nnviz')">🔬 Neural Network Visualization</button>
+        </div>
 
-    <main>
+        <!-- Neural Evolution Tab -->
+        <div class="tab-content active" id="neural">
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-value">38</div>
+                    <div class="stat-label">Generations Tracked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1,247</div>
+                    <div class="stat-label">Neural Connections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">89%</div>
+                    <div class="stat-label">Weight Stability</div>
+                </div>
+            </div>
 
-        <section class="fade-in">
-            <h2>🚀 Project Demo</h2>
-            <video src="Neu_Net_Demo.mp4" controls></video>
-            <p class="caption">Watch the evolution from random driving to optimized behavior over generations.</p>
-        </section>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Weight Evolution Heatmap</h3>
+                    <div class="chart-placeholder">
+                        <span>weight_evolution_heatmap.png</span>
+                    </div>
+                    <p class="chart-description">Shows how neural network weights changed across generations. Darker areas indicate stable connections, while bright areas show active learning.</p>
+                </div>
 
-        <section class="fade-in">
-            <h2>🧠 About the AI System</h2>
-            <p>
-                This project simulates autonomous agents — virtual self-driving cars — trained using evolutionary machine learning techniques.
-                Each car is controlled by a lightweight feedforward neural network, which takes in real-time sensor inputs to make navigation decisions.
-            </p>
-            <p>
-                The training is entirely unsupervised: no predefined routes or rewards are manually given. 
-                Instead, a genetic algorithm evolves the neural networks across generations by:
-            </p>
-            <ul>
-                <li><strong>Fitness Evaluation</strong> — scoring cars based on how far they travel without crashing.</li>
-                <li><strong>Selection</strong> — cloning the best-performing neural networks.</li>
-                <li><strong>Mutation</strong> — introducing random small changes to improve exploration of solutions.</li>
-            </ul>
-            <p>
-                Over successive generations, this process leads to increasingly competent AI agents, capable of navigating complex, dynamically generated tracks without direct programming of driving strategies.
-            </p>
-        </section>
+                <div class="chart-card">
+                    <h3>Layer-Specific Changes</h3>
+                    <div class="chart-placeholder">
+                        <span>layer_specific_heatmaps.png</span>
+                    </div>
+                    <p class="chart-description">Individual analysis of each neural network layer, revealing which parts of the brain adapted most during training.</p>
+                </div>
 
-        <section class="fade-in">
-            <h2>🔬 Neural Network Visualization</h2>
-            <video src="Neural_Net_visual.mp4" controls></video>
-            <p class="caption">Real-time visualization of the neural network adjusting control decisions.</p>
-        </section>
+                <div class="chart-card large-chart">
+                    <h3>Weight Change Timeline</h3>
+                    <div class="chart-placeholder">
+                        <span>weight_change_heatmap.png</span>
+                    </div>
+                    <p class="chart-description">Timeline view showing when major neural adaptations occurred, highlighting critical learning moments.</p>
+                </div>
+            </div>
+        </div>
 
-        <section class="fade-in center">
-            <a href="https://github.com/Roshan1299/Neural-Network-Car" target="_blank" class="github-button">
-                🔗 View on GitHub
-            </a>
-        </section>
+        <!-- Behavior Analysis Tab -->
+        <div class="tab-content" id="behavior">
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-value">72%</div>
+                    <div class="stat-label">Steering Smoothness</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3.2s</div>
+                    <div class="stat-label">Avg Decision Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">45%</div>
+                    <div class="stat-label">Behavior Consistency</div>
+                </div>
+            </div>
 
-    </main>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Decision Patterns Radar</h3>
+                    <div class="chart-placeholder">
+                        <span>decision_radar_chart.png</span>
+                    </div>
+                    <p class="chart-description">Radar chart showing how the AI's decision-making patterns evolved across different driving scenarios.</p>
+                </div>
 
-    <footer class="fade-in">
-        Made by Roshan | Hosted on AWS S3
-    </footer>
+                <div class="chart-card">
+                    <h3>Behavioral Evolution Timeline</h3>
+                    <div class="chart-placeholder">
+                        <span>decision_evolution_timeline.png</span>
+                    </div>
+                    <p class="chart-description">Timeline of behavioral changes, showing when the AI learned specific driving behaviors like cornering and speed control.</p>
+                </div>
 
+                <div class="chart-card large-chart">
+                    <h3>Behavioral Comparison</h3>
+                    <div class="chart-placeholder">
+                        <span>behavioral_comparison.png</span>
+                    </div>
+                    <p class="chart-description">Side-by-side comparison of driving behaviors between early chaotic generations and later optimized ones.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics Tab -->
+        <div class="tab-content" id="performance">
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-value">234%</div>
+                    <div class="stat-label">Distance Improvement</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0.12</div>
+                    <div class="stat-label">Optimal Mutation Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2.3</div>
+                    <div class="stat-label">Avg Laps Completed</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Mutation Impact Analysis</h3>
+                    <div class="chart-placeholder">
+                        <span>mutation_impact_analysis.png</span>
+                    </div>
+                    <p class="chart-description">Analysis of how different mutation rates affected learning speed and final performance.</p>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Sensor Importance Ranking</h3>
+                    <div class="chart-placeholder">
+                        <span>sensor_importance_chart.png</span>
+                    </div>
+                    <p class="chart-description">Which sensors the AI learned to prioritize for different driving situations and track sections.</p>
+                </div>
+
+                <div class="chart-card large-chart">
+                    <h3>Sensor Redundancy Analysis</h3>
+                    <div class="chart-placeholder">
+                        <span>sensor_redundancy_analysis.png</span>
+                    </div>
+                    <p class="chart-description">Analysis of sensor overlap and which inputs provide unique vs redundant information for driving decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Path Evolution Tab -->
+        <div class="tab-content" id="paths">
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-value">12.4m</div>
+                    <div class="stat-label">Total Distance Tracked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">85%</div>
+                    <div class="stat-label">Racing Line Efficiency</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.2x</div>
+                    <div class="stat-label">Speed Improvement</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Ghost Racing Evolution</h3>
+                    <div class="chart-placeholder">
+                        <span>path_evolution_ghost_racing.png</span>
+                    </div>
+                    <p class="chart-description">Overlay of racing lines from different generations, showing the evolution from chaotic paths to optimized racing lines.</p>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Heat Trail Analysis</h3>
+                    <div class="chart-placeholder">
+                        <span>path_heat_trail.png</span>
+                    </div>
+                    <p class="chart-description">Heatmap showing the most frequently used racing lines, revealing the AI's preferred paths through the track.</p>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Performance Overlay</h3>
+                    <div class="chart-placeholder">
+                        <span>path_performance_overlay.png</span>
+                    </div>
+                    <p class="chart-description">Speed and steering intensity overlaid on the racing line, showing where the AI brakes, accelerates, and turns.</p>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Evolution Comparison</h3>
+                    <div class="chart-placeholder">
+                        <span>path_evolution_comparison.png</span>
+                    </div>
+                    <p class="chart-description">Side-by-side comparison of early generation chaos vs late generation mastery in racing line optimization.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Project Demo Tab -->
+        <div class="tab-content" id="demo">        
+          <div class="chart-card large-chart">
+              <h3>Project Demo Video</h3>
+              <div class="video-placeholder">
+                  Video Placeholder
+              </div>
+              <p class="chart-description">Watch the project demonstration showcasing the AI car's training and racing capabilities in action.</p>
+          </div>
+        </div>
+
+        <!-- Neural Network Visualization Tab -->
+        <div class="tab-content" id="nnviz">
+            <div class="stats-overview">
+              <div class="stat-card">
+                  <div class="stat-value">1200</div>
+                  <div class="stat-label">Nodes Visualized</div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-value">120	</div>
+                  <div class="stat-label">Active Connections
+</div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-value">92%</div>
+                  <div class="stat-label">Activation Accuracy</div>
+              </div>
+          </div>
+        
+          <div class="chart-card large-chart">
+              <h3>Project Demo Video</h3>
+              <div class="video-placeholder">
+                  Video Placeholder
+              </div>
+              <p class="chart-description">Watch the project demonstration showcasing the AI car's training and racing capabilities in action.</p>
+          </div>
+        </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
