@@ -139,6 +139,19 @@
             font-size: 1.3rem;
         }
 
+        .chart-image {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .large-chart .chart-image {
+            height: 400px;
+        }
+
         .chart-placeholder {
             width: 100%;
             height: 250px;
@@ -268,25 +281,19 @@
             <div class="chart-grid">
                 <div class="chart-card">
                     <h3>Weight Evolution Heatmap</h3>
-                    <div class="chart-placeholder">
-                        <span>weight_evolution_heatmap.png</span>
-                    </div>
+                    <img src="weight_evolution_heatmap.png" alt="Weight Evolution Heatmap" class="chart-image">
                     <p class="chart-description">Shows how neural network weights changed across generations. Darker areas indicate stable connections, while bright areas show active learning.</p>
                 </div>
 
                 <div class="chart-card">
                     <h3>Layer-Specific Changes</h3>
-                    <div class="chart-placeholder">
-                        <span>layer_specific_heatmaps.png</span>
-                    </div>
+                    <img src="layer_specific_heatmaps.png" alt="Layer-Specific Changes" class="chart-image">
                     <p class="chart-description">Individual analysis of each neural network layer, revealing which parts of the brain adapted most during training.</p>
                 </div>
 
                 <div class="chart-card large-chart">
                     <h3>Weight Change Timeline</h3>
-                    <div class="chart-placeholder">
-                        <span>weight_change_heatmap.png</span>
-                    </div>
+                    <img src="weight_change_heatmap.png" alt="Weight Change Timeline" class="chart-image">
                     <p class="chart-description">Timeline view showing when major neural adaptations occurred, highlighting critical learning moments.</p>
                 </div>
             </div>
@@ -312,25 +319,19 @@
             <div class="chart-grid">
                 <div class="chart-card">
                     <h3>Decision Patterns Radar</h3>
-                    <div class="chart-placeholder">
-                        <span>decision_radar_chart.png</span>
-                    </div>
+                    <img src="assets/decision_patterns_radar.png" alt="Decision Patterns Radar" class="chart-image">
                     <p class="chart-description">Radar chart showing how the AI's decision-making patterns evolved across different driving scenarios.</p>
                 </div>
 
                 <div class="chart-card">
                     <h3>Behavioral Evolution Timeline</h3>
-                    <div class="chart-placeholder">
-                        <span>decision_evolution_timeline.png</span>
-                    </div>
+                    <img src="assets/decision_evolution_timeline.png" alt="Behavioral Evolution Timeline" class="chart-image">
                     <p class="chart-description">Timeline of behavioral changes, showing when the AI learned specific driving behaviors like cornering and speed control.</p>
                 </div>
 
                 <div class="chart-card large-chart">
                     <h3>Behavioral Comparison</h3>
-                    <div class="chart-placeholder">
-                        <span>behavioral_comparison.png</span>
-                    </div>
+                    <img src="assets/behavioral_comparison.png" alt="Behavioral Comparison" class="chart-image">
                     <p class="chart-description">Side-by-side comparison of driving behaviors between early chaotic generations and later optimized ones.</p>
                 </div>
             </div>
@@ -356,25 +357,19 @@
             <div class="chart-grid">
                 <div class="chart-card">
                     <h3>Mutation Impact Analysis</h3>
-                    <div class="chart-placeholder">
-                        <span>mutation_impact_analysis.png</span>
-                    </div>
+                    <img src="mutation_impact_analysis.png" alt="Mutation Impact Analysis" class="chart-image">
                     <p class="chart-description">Analysis of how different mutation rates affected learning speed and final performance.</p>
                 </div>
 
                 <div class="chart-card">
                     <h3>Sensor Importance Ranking</h3>
-                    <div class="chart-placeholder">
-                        <span>sensor_importance_chart.png</span>
-                    </div>
+                    <img src="sensor_importance_chart.png" alt="Sensor Importance Ranking" class="chart-image">
                     <p class="chart-description">Which sensors the AI learned to prioritize for different driving situations and track sections.</p>
                 </div>
 
                 <div class="chart-card large-chart">
                     <h3>Sensor Redundancy Analysis</h3>
-                    <div class="chart-placeholder">
-                        <span>sensor_redundancy_analysis.png</span>
-                    </div>
+                    <img src="sensor_redundancy_analysis.png" alt="Sensor Redundancy Analysis" class="chart-image">
                     <p class="chart-description">Analysis of sensor overlap and which inputs provide unique vs redundant information for driving decisions.</p>
                 </div>
             </div>
@@ -400,38 +395,29 @@
             <div class="chart-grid">
                 <div class="chart-card">
                     <h3>Ghost Racing Evolution</h3>
-                    <div class="chart-placeholder">
-                        <span>path_evolution_ghost_racing.png</span>
-                    </div>
+                    <img src="path_evolution_ghost_racing.png" alt="Ghost Racing Evolution" class="chart-image">
                     <p class="chart-description">Overlay of racing lines from different generations, showing the evolution from chaotic paths to optimized racing lines.</p>
                 </div>
 
                 <div class="chart-card">
                     <h3>Heat Trail Analysis</h3>
-                    <div class="chart-placeholder">
-                        <span>path_heat_trail.png</span>
-                    </div>
+                    <img src="path_heat_trail.png" alt="Heat Trail Analysis" class="chart-image">
                     <p class="chart-description">Heatmap showing the most frequently used racing lines, revealing the AI's preferred paths through the track.</p>
                 </div>
 
                 <div class="chart-card">
                     <h3>Performance Overlay</h3>
-                    <div class="chart-placeholder">
-                        <span>path_performance_overlay.png</span>
-                    </div>
+                    <img src="path_performance_overlay.png" alt="Performance Overlay" class="chart-image">
                     <p class="chart-description">Speed and steering intensity overlaid on the racing line, showing where the AI brakes, accelerates, and turns.</p>
                 </div>
 
                 <div class="chart-card">
                     <h3>Evolution Comparison</h3>
-                    <div class="chart-placeholder">
-                        <span>path_evolution_comparison.png</span>
-                    </div>
+                    <img src="path_evolution_comparison.png" alt="Evolution Comparison" class="chart-image">
                     <p class="chart-description">Side-by-side comparison of early generation chaos vs late generation mastery in racing line optimization.</p>
                 </div>
             </div>
         </div>
-
 
         <!-- Project Demo Tab -->
         <div class="tab-content" id="demo">        
@@ -452,9 +438,8 @@
                   <div class="stat-label">Nodes Visualized</div>
               </div>
               <div class="stat-card">
-                  <div class="stat-value">120	</div>
-                  <div class="stat-label">Active Connections
-</div>
+                  <div class="stat-value">120</div>
+                  <div class="stat-label">Active Connections</div>
               </div>
               <div class="stat-card">
                   <div class="stat-value">92%</div>
@@ -463,13 +448,14 @@
           </div>
         
           <div class="chart-card large-chart">
-              <h3>Project Demo Video</h3>
+              <h3>Neural Network Visualization</h3>
               <div class="video-placeholder">
                   Video Placeholder
               </div>
-              <p class="chart-description">Watch the project demonstration showcasing the AI car's training and racing capabilities in action.</p>
+              <p class="chart-description">Interactive visualization of the neural network structure and activation patterns during training.</p>
           </div>
         </div>
+    </div>
 
     <script>
         function showTab(tabName) {
