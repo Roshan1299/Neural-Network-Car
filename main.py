@@ -441,7 +441,7 @@ def main():
                     except Exception as e:
                         print(f"Error generating mutation analysis: {e}")
                 
-                elif event.key == pygame.K_p and pygame.key.get_pressed()[pygame.K_LSHIFT]:  # Shift+P for path analysis
+                elif event.key == pygame.K_o:  # Shift+P for path analysis
                     print("Generating path tracking visualizations...")
                     try:
                         path_tracker.save_data()
