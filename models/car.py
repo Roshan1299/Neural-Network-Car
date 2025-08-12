@@ -129,3 +129,79 @@ class Car(pygame.sprite.Sprite):
             screen, P_RED, [(p[0], p[1]) for p in self.polygon], 1)
         # if self.sensor and draw_sensor:
         #     self.sensor.draw(screen)
+
+    def get_sensor_distances(self):
+        """Return list of sensor distances for decision tracking"""
+        if not hasattr(self, 'sensors') or not self.sensors:
+            return [0] * 5  # Default 5 sensors if not available
+        
+        return [sensor.distance if hasattr(sensor, 'distance') else 0 for sensor in self.sensors]
+
+    def get_current_outputs(self):
+        """Get the current neural network outputs"""
+        if not self.brain or not hasattr(self, 'sensors'):
+            return [0, 0, 0, 0]  # Default outputs
+        
+        # Get sensor readings
+        sensor_readings = self.get_sensor_distances()
+        
+        # Process through brain
+        processed_inputs = self.brain.preprocess_inputs(sensor_readings)
+        outputs = self.brain.feed_forward(processed_inputs, self.brain)
+        
+        return outputs
+    
+    # Add these methods to your Car class in models/car.py
+
+    def get_sensor_distances(self):
+        """Return list of sensor distances for analysis"""
+        if not self.sensor or not self.sensor.readings:
+            return [1.0] * 5  # Default: no obstacles detected
+        
+        distances = []
+        for reading in self.sensor.readings:
+            if reading is not None:
+                # reading["offset"] is between 0 and 1
+                # 0 = touching obstacle, 1 = no obstacle in range
+                distances.append(reading["offset"])
+            else:
+                distances.append(1.0)  # No obstacle detected
+        
+        # Ensure we always return exactly 5 values
+        while len(distances) < 5:
+            distances.append(1.0)
+        return distances[:5]
+
+    def get_current_outputs(self):
+        """Get the current neural network outputs"""
+        if not self.brain or not self.sensor:
+            return [0, 0, 0, 0]  # Default outputs
+        
+        # Get sensor readings
+        sensor_readings = self.get_sensor_distances()
+        
+        # Process through brain (same as in update method)
+        normalized_inputs = self.brain.preprocess_inputs(sensor_readings)
+        outputs = self.brain.feed_forward(normalized_inputs, self.brain)
+        
+        return outputs
+
+    def get_sensor_influence(self):
+        """Calculate how much each sensor influences decisions"""
+        if not self.brain or not self.brain.levels:
+            return [0] * 5
+        
+        # Get the first layer weights (input to hidden)
+        first_level = self.brain.levels[0]
+        influences = []
+        
+        for sensor_idx in range(min(5, len(first_level.weights))):
+            # Sum absolute weights from this sensor to all hidden neurons
+            influence = sum(abs(weight) for weight in first_level.weights[sensor_idx])
+            influences.append(influence)
+        
+        # Pad with zeros if needed
+        while len(influences) < 5:
+            influences.append(0)
+        
+        return influences[:5]
