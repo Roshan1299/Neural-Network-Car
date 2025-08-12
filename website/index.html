@@ -111,6 +111,14 @@
             }
         }
 
+        .video {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background-color: #000;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
         .chart-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -378,6 +386,11 @@
                     <img src="assets/sensor_redundancy_analysis_20250806_071238.png" alt="Sensor Redundancy Analysis" class="chart-image">
                     <p class="chart-description">Analysis of sensor overlap and which inputs provide unique vs redundant information for driving decisions.</p>
                 </div>
+                <div class="chart-card">
+                    <h3>Sensor Redundancy Analysis</h3>
+                    <img src="assets/real_time_sensors_20250731_163255.png" alt="Sensor Redundancy Analysis" class="chart-image">
+                    <p class="chart-description">Analysis of sensor overlap and which inputs provide unique vs redundant information for driving decisions.</p>
+                </div>
             </div>
         </div>
 
@@ -401,7 +414,7 @@
             <div class="chart-grid">
                 <div class="chart-card">
                     <h3>Ghost Racing Evolution</h3>
-                    <img src="assets/path_evolution_ghost_racing.png" alt="Ghost Racing Evolution" class="chart-image">
+                    <img src="assets/path_evolution_ghost_racing1.png" alt="Ghost Racing Evolution" class="chart-image">
                     <p class="chart-description">Overlay of racing lines from different generations, showing the evolution from chaotic paths to optimized racing lines.</p>
                 </div>
 
@@ -417,11 +430,11 @@
                     <p class="chart-description">Speed and steering intensity overlaid on the racing line, showing where the AI brakes, accelerates, and turns.</p>
                 </div>
 
-                <div class="chart-card">
+                <!-- <div class="chart-card">
                     <h3>Evolution Comparison</h3>
-                    <img src="assets/path_evolution_comparison.png" alt="Evolution Comparison" class="chart-image">
+                    <img src="assets/path_evolution_comparison1.png" alt="Evolution Comparison" class="chart-image">
                     <p class="chart-description">Side-by-side comparison of early generation chaos vs late generation mastery in racing line optimization.</p>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -429,9 +442,10 @@
         <div class="tab-content" id="demo">        
           <div class="chart-card large-chart">
               <h3>Project Demo Video</h3>
-              <div class="video-placeholder">
-                  Video Placeholder
-              </div>
+              <video controls class="video">
+                <source src="assets/Neu_Net_Demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
               <p class="chart-description">Watch the project demonstration showcasing the AI car's training and racing capabilities in action.</p>
           </div>
         </div>
@@ -455,9 +469,10 @@
         
           <div class="chart-card large-chart">
               <h3>Neural Network Visualization</h3>
-              <div class="video-placeholder">
-                  Video Placeholder
-              </div>
+              <video class="video">
+                  <source src="assets/Neural_Net_visual.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
               <p class="chart-description">Interactive visualization of the neural network structure and activation patterns during training.</p>
           </div>
         </div>
