@@ -3,10 +3,12 @@
 A Python-based simulation of AI-controlled cars navigating a wavy track using **evolutionary neural networks** and **genetic algorithms**. Built with **Pygame**, this project demonstrates how autonomous agents can learn to drive without being explicitly programmed.
 
 ---
+ 
+[![Inital Demo](https://img.shields.io/badge/Initial%20Demo-Visit-red?style=for-the-badge)](http://neural-net-car.s3-website-us-east-1.amazonaws.com) <br>
+[![Final Live Demo](https://img.shields.io/badge/Final%20Live%20Demo-Visit-green?style=for-the-badge)](https://neural-network-car.vercel.app/)
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit-red?style=for-the-badge)](http://neural-net-car.s3-website-us-east-1.amazonaws.com)
-
-> ✅ **Hosted on AWS S3**  
+> ✅ **Hosted on AWS S3** (Initially) <br>
+> ✅ **Hosted on  Vercel** (Final) <br>
 > 🎥 Includes demo videos + neural network visualization  
 > 📦 Entire website served statically via S3
 
