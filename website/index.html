@@ -243,24 +243,72 @@
             }
 
             .tabs {
-                flex-wrap: wrap;
+                display: flex;
+                overflow-x: auto;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 12px;
+                margin-bottom: 20px;
+                padding: 10px;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .tabs::-webkit-scrollbar {
+                display: none;
             }
 
             .tab {
-                flex: 1;
-                min-width: 120px;
+                flex: 0 0 auto;
+                padding: 12px 20px;
+                margin-right: 8px;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.05);
+                color: #cccccc;
+                font-size: 0.9rem;
+                white-space: nowrap;
+                transition: all 0.3s ease;
+            }
+
+            .tab:last-child {
+                margin-right: 0;
+            }
+
+            .tab.active {
+                background: linear-gradient(135deg, #00ff88, #00ccff);
+                color: #000;
+                border-color: #00ff88;
+                box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .tab-content {
+                padding: 20px;
             }
         }
+
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>AI Car Training Analysis</h1>
-            <p>Comprehensive visualization of neural network evolution across 38 generations</p>
+            <p>Comprehensive visualization of neural network evolution across generations</p>
         </div>
 
-        <div class="tabs">
+        <div class="tabs" id="tabs-container">
             <button class="tab" onclick="showTab('demo')">🚀 Project Demo</button>
             <button class="tab active" onclick="showTab('neural')">🧠 Neural Evolution</button>
             <button class="tab" onclick="showTab('behavior')">🎯 Behavior Analysis</button>
