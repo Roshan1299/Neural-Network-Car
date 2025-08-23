@@ -9,10 +9,10 @@ from models.car import Car
 from environment.road import Road 
 from models.network import NeuralNetwork
 from utils.visualizer import Visualizer
-from weight_tracker import WeightTracker
-from decision_tracker import DecisionTracker
-from sensor_analyzer import SensorAnalyzer
-from path_tracker import PathTracker
+from plot_trackers.weight_tracker import WeightTracker
+from plot_trackers.decision_tracker import DecisionTracker
+from plot_trackers.sensor_analyzer import SensorAnalyzer
+from plot_trackers.path_tracker import PathTracker
 
 generation = 1
 num_cars = 10  # Total cars per generation
