@@ -15,3 +15,22 @@ P_YELLOW = (210, 255, 0, 65)
 SAND = (151, 125, 94)
 ASPHALT = (53, 70, 92)
 
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREEN = (34, 139, 34)
+GRAY = (60, 60, 60)
+RED = (255, 0, 0)
+YELLOW = (255, 255, 0)
+BLUE = (0, 0, 255)
+
+# Physics
+GRAVITY = 0.5
+FRICTION = 0.95
+MAX_SPEED = 15
+
+# Car settings (if you have a car class)
+CAR_WIDTH = 20
+CAR_HEIGHT = 40
+ACCELERATION = 0.5
+TURN_SPEED = 5
