@@ -2,25 +2,42 @@
 
 A Python-based simulation of AI-controlled cars navigating a wavy track using **evolutionary neural networks** and **genetic algorithms**. Built with **Pygame**, this project demonstrates how autonomous agents can learn to drive without being explicitly programmed.
 
----
- 
-[![Inital Demo](https://img.shields.io/badge/Initial%20Demo-Visit-red?style=for-the-badge)](http://neural-net-car.s3-website-us-east-1.amazonaws.com) <br>
-[![Final Live Demo](https://img.shields.io/badge/Final%20Live%20Demo-Visit-green?style=for-the-badge)](https://neural-network-car.vercel.app/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Pygame](https://img.shields.io/badge/pygame-2.5.0-green?logo=python&logoColor=white)](https://www.pygame.org/news)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/YOUR_USERNAME/NeuroNet_Car/pulls)
+[![Website](https://img.shields.io/badge/Live_Analysis-Visit-blue?style=flat&logo=google-chrome)](https://neural-network-car.vercel.app/)
 
-> ✅ **Hosted on AWS S3** (Initially) <br>
-> ✅ **Hosted on  Vercel** (Final) <br>
-> 🎥 Includes demo videos + neural network visualization  
-> 📦 Entire website served statically via S3
+## 🌐 Live Website & Demos
 
+- 🔎 **Analysis Website:** [Visit here](https://neural-network-car.vercel.app/)  
+- 🎥 **Initial Demo (AWS S3):** [View Demo](http://neural-net-car.s3-website-us-east-1.amazonaws.com/)  
+- 🚀 **Final Demo (Vercel):** [View Demo](https://neural-network-car.vercel.app/)  
+
+## What’s New
+
+- 🎨 Custom Road Drawing → Create your own tracks to test learning in new environments.
+- 📊 Plot Trackers → Generate graphs of:
+  - Neural decisions
+  - Sensor influence
+  - Path tracking
+  - Weight evolution
+  - Mutation impact
+
+- 🌐 Analysis Website → Visualize performance metrics and AI behavior online.
 ---
 ## Table of Contents
 
 1. [Features](#features)
 2. [Code Structure](#code-structure)
 3. [Controls](#controls)
-4. [How it works](#how-it-works)
+4. [How It Works](#how-it-works)
+   - [Neural Network](#neural-network)
+   - [Genetic Algorithm](#genetic-algorithm)
+   - [Evolution Over Time](#evolution-over-time)
+   - [Plot Trackers](#plot-trackers)
 5. [Contributing](#contributing)
-7. [License](#license)
+6. [License](#license)
 
 ## Features
 
@@ -33,16 +50,41 @@ A Python-based simulation of AI-controlled cars navigating a wavy track using **
 ## Code Structure
 The project is organized into multiple files, each handling a specific aspect of the simulation:
 
-- `car.py`: Manages car movement, collision detection, sensors, and neural network.
-- `controls.py`: Handles user input for car controls.
-- `main.py`: Main game loop, simulation initialization, and rendering.
-- `network.py`: Defines the neural network structure and behavior.
-- `road.py`: Generates and manages the wavy track.
-- `sensor.py`: Simulates car sensors for detecting road borders.
-- `settings.py`: Contains simulation constants and configurations.
-- `visualizer.py`: Provides real-time neural network visualization.
-- `save_state.json`: Stores the best-performing neural network and generation number.
-
+```
+NEURAL-NETWORK-CAR/
+├── assets/                    # Game assets (images, sounds, etc.)
+├── controllers/
+│   └── controls.py           # Handles user input for car controls
+├── environment/
+│   ├── road.py               # Generates and manages the wavy track
+│   ├── roo.py                # Extra/experimental road generation
+│   └── layer_heatmaps/       # Heatmap visualizations
+├── models/
+│   ├── car.py                # Car movement, collision, and sensors
+│   ├── network.py            # Defines neural network structure
+│   └── sensor.py             # Simulates car sensors for road detection
+├── plot_trackers/
+│   ├── decision_tracker.py   # Tracks neural network decision outputs
+│   ├── mutation_impact_real.py # Analyzes mutation impact across generations
+│   ├── path_tracker.py       # Logs path and fitness progression
+│   ├── sensor_analyzer.py    # Analyzes influence of sensors
+│   ├── track_editor.py       # Custom track drawing tool
+│   └── weight_tracker.py     # Tracks neural network weight evolution
+├── utils/
+│   ├── utils.py              # Helper functions
+│   └── visualizer.py         # Real-time neural network visualization
+├── website/                  # Website/analysis dashboard source
+├── main.py                   # Main simulation entry point
+├── settings.py               # Global constants and configurations
+├── custom_track.json         # Saved custom track data
+├── sensor_analysis_data.json # Sensor influence logs
+├── path_tracking_data.json   # Path tracking logs
+├── mutation_data.json        # Mutation evolution logs
+├── decision_tracking_data.json # Neural decision logs
+├── weight_tracking_data.json # Neural weight logs
+├── behavioral_comparison.png # Visualization of behavioral differences
+└── .gitignore
+```
 ## Controls
 - `R`: Restart simulation with a new generation of cars (mutated from the best saved brain).
 - `S`: Save the current best-performing car's neural network (only if it's better than the last saved one).
@@ -83,6 +125,16 @@ The genetic algorithm is used to evolve the neural networks controlling the cars
 - A new population of cars is created using the mutated neural network. This process is repeated for multiple generations, allowing the cars to gradually improve their driving behavior.
 ### Evolution Over Time
 - Over many generations, the cars learn to navigate the track more effectively. The genetic algorithm ensures that the best traits (neural network configurations) are preserved and improved upon.
+
+### Plot Trackers
+- Trackers provide detailed graphs of how learning evolves:
+- Decision Tracker → Network output over time.
+- Path Tracker → Fitness progression & routes.
+- Sensor Analyzer → How each sensor affects decisions.
+- Weight Tracker → Changes in network weights.
+- Mutation Impact → Effect of mutation strength.
+- Track Editor → Draw and test your own tracks.
+
 ## Contributing
 Contributions are welcome! If you'd like to contribute, please follow these steps:
 1. Fork the repository.
