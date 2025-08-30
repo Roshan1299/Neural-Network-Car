@@ -220,48 +220,7 @@ class WeightTracker:
             return True
         return False
 
-
-# Integration code for your main.py
-def integrate_weight_tracking():
-    """
-    Instructions for integrating weight tracking into your main.py:
-    
-    1. Add this import at the top of main.py:
-       from weight_tracker import WeightTracker
-    
-    2. Initialize the tracker in your main() function:
-       weight_tracker = WeightTracker()
-       weight_tracker.load_data()  # Load previous tracking data if exists
-    
-    3. In your save_state() function, add weight tracking:
-       def save_state(car, generation):
-           brain_state = car.brain.get_state()
-           save_data = {
-               "generation": generation,
-               "brain": brain_state
-           }
-           with open("save_state.json", "w") as f:
-               json.dump(save_data, f)
-           
-           # Add weight tracking here
-           weight_tracker.track_weights(car.brain, generation)
-           weight_tracker.save_data()
-    
-    4. Add keyboard shortcut for generating heatmap (in your event handling):
-       elif event.key == pygame.K_h:  # Press 'H' to generate heatmap
-           weight_tracker.create_heatmap()
-           weight_tracker.create_layer_specific_heatmaps()
-           weight_tracker.create_weight_change_heatmap()
-           stats = weight_tracker.get_statistics()
-           print("Weight Evolution Statistics:")
-           print(json.dumps(stats, indent=2))
-    """
-    pass
-
 if __name__ == "__main__":
     # Example usage
     tracker = WeightTracker()
     
-    # Simulate some weight tracking (replace with real neural network)
-    print("This is an example of how the WeightTracker works.")
-    print("Integrate it into your main.py following the instructions in the integrate_weight_tracking() function.")
