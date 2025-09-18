@@ -1461,5 +1461,27 @@
     "cars_survived": 9,
     "cars_beat_previous": 0,
     "fitness_std": 295.2776669509568
+  },
+  {
+    "generation": 134,
+    "mutation_rate": 0.1,
+    "best_fitness": 9563.399999999983,
+    "avg_fitness": 1256.8349999999982,
+    "performance_improvement": 8769.749999999982,
+    "population_diversity": 2781.0367405025363,
+    "cars_survived": 9,
+    "cars_beat_previous": 1,
+    "fitness_std": 2781.0367405025363
+  },
+  {
+    "generation": 135,
+    "mutation_rate": 0.1,
+    "best_fitness": 2233.7000000000075,
+    "avg_fitness": 479.0200000000008,
+    "performance_improvement": -7329.699999999975,
+    "population_diversity": 632.4556443735819,
+    "cars_survived": 8,
+    "cars_beat_previous": 0,
+    "fitness_std": 632.4556443735819
   }
 ]
