@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  neural-network-car:
+    build: .
+    container_name: neural-network-car
+    environment:
+      # Virtual display for headless operation
+      - DISPLAY=:99
+      - SDL_VIDEODRIVER=fbcon
+    volumes:
+      - .:/app
+    # Use a virtual display for headless operation
+    stdin_open: true    # equivalent to docker run -i
+    tty: true          # equivalent to docker run -t
+    command: >
+      sh -c "
+        # Start virtual X server
+        Xvfb :99 -screen 0 1200x900x24 &
+        sleep 2
+        # Set the DISPLAY environment variable
+        export DISPLAY=:99
+        # Run the application
+        python main.py
+      "
